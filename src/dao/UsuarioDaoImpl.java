@@ -127,4 +127,26 @@ public class UsuarioDaoImpl implements UsuarioDao {
         return usuarios;
     }
 
+    @Override
+    public Usuario pesquisarPorLoginSenha(String login, String senha) throws SQLException {
+        String consulta = "SELECT * FROM usuario WHERE usuario = ? AND senha = ?";
+        try {
+            conexao = FabricaConexao.abrirConexao();
+            preparaSql = conexao.prepareStatement(consulta);
+            preparaSql.setString(1, login);
+            preparaSql.setString(2, senha);
+            resultado = preparaSql.executeQuery();
+            if (resultado.next()) {
+                usurio = new Usuario();
+                usurio.setId(resultado.getInt("id"));
+                usurio.setUsuario(resultado.getString("usuario"));
+                usurio.setSenha(resultado.getString("senha"));
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao pesquisar por id "
+                    + e.getMessage());
+        }
+        return usurio;
+    }
+
 }

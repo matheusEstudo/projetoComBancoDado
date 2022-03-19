@@ -5,11 +5,10 @@
  */
 package util;
 
-
 public class Funcoes {
-    
-    public static boolean verificarStr(String texto){
+
+    public static boolean verificarStr(String texto) {
         return texto.length() >= 3;
     }
-    
+
 }

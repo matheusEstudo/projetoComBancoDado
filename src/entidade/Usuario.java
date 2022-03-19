@@ -1,9 +1,7 @@
-
 package entidade;
 
-
 public class Usuario {
-    
+
     private Integer id;
     private String nome;
     private String usuario;
@@ -49,7 +47,5 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    
-    
+
 }
