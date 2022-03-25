@@ -89,6 +89,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
             if (resultado.next()) {
                 usurio = new Usuario();
                 usurio.setId(resultado.getInt("id"));
+                usurio.setNome(resultado.getString("nome"));
                 usurio.setUsuario(resultado.getString("usuario"));
                 usurio.setSenha(resultado.getString("senha"));
             }
@@ -111,6 +112,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
             while (resultado.next()) {
                 usurio = new Usuario();
                 usurio.setId(resultado.getInt("id"));
+                usurio.setNome(resultado.getString("nome"));
                 usurio.setUsuario(resultado.getString("usuario"));
                 usurio.setSenha(resultado.getString("senha"));
                 usuarios.add(usurio);
@@ -139,6 +141,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
             if (resultado.next()) {
                 usurio = new Usuario();
                 usurio.setId(resultado.getInt("id"));
+                usurio.setNome(resultado.getString("nome"));
                 usurio.setUsuario(resultado.getString("usuario"));
                 usurio.setSenha(resultado.getString("senha"));
             }
