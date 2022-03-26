@@ -5,17 +5,38 @@ import entidade.Usuario;
 public class Inicio extends javax.swing.JFrame {
 
     private Usuario usuario;
+    private Integer numeroCerto = 0;
+    private Integer tentativa = 0;
 
     public Inicio() {
         initComponents();
+        numeroCerto = (int) (Math.random() * 101);
+        lbTentativa.setText(String.valueOf(tentativa));
+        lbIncorreto.setVisible(false);
+        lbCorreto.setVisible(false);
+        System.out.println(numeroCerto);
+        lbErroSelecionar.setVisible(false);
+        varNumero.setVisible(false);
+        lbTxtNumero.setVisible(false);
+        btJogar.setVisible(false);
+        btReplay.setVisible(false);
     }
 
     public Inicio(Usuario usuario) {
         initComponents();
+        numeroCerto = (int) (Math.random() * 101);
         this.usuario = usuario;
         lbNome.setText(usuario.getNome());
         lbUser.setText(usuario.getUsuario());
-        lbTentativa.setText("3");
+        lbTentativa.setText(String.valueOf(tentativa));
+        lbIncorreto.setVisible(false);
+        lbCorreto.setVisible(false);
+        System.out.println(numeroCerto);
+        lbErroSelecionar.setVisible(false);
+        varNumero.setVisible(false);
+        lbTxtNumero.setVisible(false);
+        btJogar.setVisible(false);
+        btReplay.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -27,10 +48,9 @@ public class Inicio extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         lbNome = new javax.swing.JLabel();
         lbUser = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         lbTentativa = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -39,8 +59,14 @@ public class Inicio extends javax.swing.JFrame {
         rbFacil = new javax.swing.JRadioButton();
         rbMedio = new javax.swing.JRadioButton();
         rbDificil = new javax.swing.JRadioButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lbErroSelecionar = new javax.swing.JLabel();
+        btJogar = new javax.swing.JLabel();
+        btReplay = new javax.swing.JLabel();
+        btConficurar = new javax.swing.JLabel();
+        lbTxtNumero = new javax.swing.JLabel();
+        varNumero = new javax.swing.JFormattedTextField();
+        lbIncorreto = new javax.swing.JLabel();
+        lbCorreto = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -48,6 +74,7 @@ public class Inicio extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jogo");
         setBackground(new java.awt.Color(204, 255, 255));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -63,6 +90,11 @@ public class Inicio extends javax.swing.JFrame {
         lbNome.setForeground(new java.awt.Color(0, 0, 0));
 
         lbUser.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Jogador (a):");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -80,11 +112,13 @@ public class Inicio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbNome, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(lbNome, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -92,20 +126,17 @@ public class Inicio extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 153));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setForeground(new java.awt.Color(204, 0, 204));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Jogo");
-
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Número:");
 
         jPanel3.setBackground(new java.awt.Color(204, 153, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -154,6 +185,9 @@ public class Inicio extends javax.swing.JFrame {
         rbDificil.setForeground(new java.awt.Color(0, 0, 0));
         rbDificil.setText("Difícil");
 
+        lbErroSelecionar.setForeground(new java.awt.Color(255, 0, 0));
+        lbErroSelecionar.setText("Selecione um nível");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -167,7 +201,8 @@ public class Inicio extends javax.swing.JFrame {
                             .addComponent(rbFacil)
                             .addComponent(rbDificil)
                             .addComponent(rbMedio))
-                        .addGap(0, 31, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lbErroSelecionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -181,66 +216,105 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(rbMedio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rbDificil)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbErroSelecionar)
+                .addContainerGap())
         );
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/3706872-control-music-play-play-music-play-sound-start_108717.png"))); // NOI18N
-        jLabel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btJogar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/checkmark-verify-interface-symbol-button_icon-icons.com_73298.png"))); // NOI18N
+        btJogar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btJogar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btJogarMouseClicked(evt);
+            }
+        });
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/replay_icon-icons.com_64443.png"))); // NOI18N
-        jLabel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btReplay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/-replay_90563.png"))); // NOI18N
+        btReplay.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btReplay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btReplayMouseClicked(evt);
+            }
+        });
+
+        btConficurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/1904675-configuration-edit-gear-options-preferences-setting-settings_122525.png"))); // NOI18N
+        btConficurar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btConficurar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btConficurarMouseClicked(evt);
+            }
+        });
+
+        lbTxtNumero.setForeground(new java.awt.Color(0, 0, 0));
+        lbTxtNumero.setText("Número:");
+
+        varNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("####"))));
+
+        lbIncorreto.setForeground(new java.awt.Color(255, 0, 0));
+        lbIncorreto.setText("Numero Incorreto!!!");
+
+        lbCorreto.setForeground(new java.awt.Color(0, 51, 0));
+        lbCorreto.setText("Numero Correto!!");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(91, 91, 91)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(241, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel8)
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16))))
+                            .addComponent(lbTxtNumero)
+                            .addComponent(varNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbIncorreto, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbCorreto, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(btConficurar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btReplay, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btJogar)))
+                        .addGap(0, 33, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addComponent(jLabel3)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(35, 35, 35)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(0, 0, 0)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(lbTxtNumero)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(varNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbIncorreto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lbCorreto)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7)))
-                        .addGap(24, 24, 24))))
+                                .addComponent(btConficurar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btReplay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btJogar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(15, 15, 15))))
         );
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 255));
@@ -304,16 +378,110 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(24, 24, 24)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btJogarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btJogarMouseClicked
+        String numero = varNumero.getText();
+        if (jogabilidade(numero)) {
+            lbCorreto.setVisible(true);
+            lbIncorreto.setVisible(false);
+            btJogar.setVisible(false);
+            varNumero.setText("");
+        }
+    }//GEN-LAST:event_btJogarMouseClicked
+
+    private void btReplayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btReplayMouseClicked
+        numeroCerto = (int) (Math.random() * 101);
+        btJogar.setVisible(true);
+        lbIncorreto.setVisible(false);
+        lbCorreto.setVisible(false);
+        tentativa = 0;
+        lbTentativa.setText(String.valueOf(tentativa));
+        System.out.println(numeroCerto);
+    }//GEN-LAST:event_btReplayMouseClicked
+
+    private void btConficurarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btConficurarMouseClicked
+        if (rbFacil.isSelected() == true && rbDificil.isSelected() == true
+                && rbMedio.isSelected() == true) {
+            lbErroSelecionar.setVisible(true);
+            tentativa = 0;
+            lbTentativa.setText(String.valueOf(tentativa));
+
+        } else if (rbFacil.isSelected() == false && rbDificil.isSelected() == false
+                && rbMedio.isSelected() == false) {
+            lbErroSelecionar.setVisible(true);
+            tentativa = 0;
+            lbTentativa.setText(String.valueOf(tentativa));
+
+        } else if (rbFacil.isSelected() == true && rbMedio.isSelected() == true) {
+            lbErroSelecionar.setVisible(true);
+            tentativa = 0;
+            lbTentativa.setText(String.valueOf(tentativa));
+
+        } else if (rbFacil.isSelected() == true && rbDificil.isSelected() == true) {
+            lbErroSelecionar.setVisible(true);
+            tentativa = 0;
+            lbTentativa.setText(String.valueOf(tentativa));
+
+        } else if (rbMedio.isSelected() == true && rbDificil.isSelected() == true) {
+            lbErroSelecionar.setVisible(true);
+            tentativa = 0;
+            lbTentativa.setText(String.valueOf(tentativa));
+
+        } else if (rbFacil.isSelected() == true) {
+            lbErroSelecionar.setVisible(false);
+            tentativa = 10;
+            lbTentativa.setText(String.valueOf(tentativa));
+            btJogar.setVisible(true);
+            btReplay.setVisible(true);
+            varNumero.setVisible(true);
+            lbTxtNumero.setVisible(true);
+
+        } else if (rbMedio.isSelected() == true) {
+            lbErroSelecionar.setVisible(false);
+            tentativa = 5;
+            lbTentativa.setText(String.valueOf(tentativa));
+            btJogar.setVisible(true);
+            btReplay.setVisible(true);
+            varNumero.setVisible(true);
+            lbTxtNumero.setVisible(true);
+
+        } else if (rbDificil.isSelected() == true) {
+            lbErroSelecionar.setVisible(false);
+            tentativa = 4;
+            lbTentativa.setText(String.valueOf(tentativa));
+            btJogar.setVisible(true);
+            btReplay.setVisible(true);
+            varNumero.setVisible(true);
+            lbTxtNumero.setVisible(true);
+
+        }
+
+    }//GEN-LAST:event_btConficurarMouseClicked
+
+    private boolean jogabilidade(String numero) {
+        if (!numero.equals(String.valueOf(numeroCerto))) {
+            lbIncorreto.setVisible(true);
+            tentativa -= 1;
+            lbTentativa.setText(String.valueOf(tentativa));
+            varNumero.setText("");
+            if (tentativa.equals(0)) {
+                btJogar.setVisible(false);
+
+            }
+            return false;
+        }
+        return true;
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -348,15 +516,15 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JLabel btConficurar;
+    private javax.swing.JLabel btJogar;
+    private javax.swing.JLabel btReplay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -364,11 +532,16 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lbCorreto;
+    private javax.swing.JLabel lbErroSelecionar;
+    private javax.swing.JLabel lbIncorreto;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbTentativa;
+    private javax.swing.JLabel lbTxtNumero;
     private javax.swing.JLabel lbUser;
     private javax.swing.JRadioButton rbDificil;
     private javax.swing.JRadioButton rbFacil;
     private javax.swing.JRadioButton rbMedio;
+    private javax.swing.JFormattedTextField varNumero;
     // End of variables declaration//GEN-END:variables
 }
