@@ -1,7 +1,7 @@
 package telas;
 
-import dao.UsuarioDao;
-import dao.UsuarioDaoImpl;
+import dao.usuario.UsuarioDao;
+import dao.usuario.UsuarioDaoImpl;
 import entidade.Usuario;
 import java.sql.SQLException;
 import java.util.logging.Level;
