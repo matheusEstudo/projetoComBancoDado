@@ -5,8 +5,10 @@ import dao.rodada.RodadaImplDao;
 import entidade.Rodada;
 import entidade.Usuario;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 public class Inicio extends javax.swing.JFrame {
 
@@ -15,6 +17,7 @@ public class Inicio extends javax.swing.JFrame {
     private Integer numeroCerto = 0;
     private Integer tentativa = 0;
     private Integer quantRodada = 0;
+    private DefaultTableModel tabelaModelo;
     private RodadaDao rodadaDao = new RodadaImplDao();
 
     public Inicio() {
@@ -31,7 +34,7 @@ public class Inicio extends javax.swing.JFrame {
         btReplay.setVisible(false);
     }
 
-    public Inicio(Usuario usuario) {
+    public Inicio(Usuario usuario) throws SQLException {
         initComponents();
         numeroCerto = (int) (Math.random() * 101);
         this.usuario = usuario;
@@ -46,6 +49,7 @@ public class Inicio extends javax.swing.JFrame {
         lbTxtNumero.setVisible(false);
         btJogar.setVisible(false);
         btReplay.setVisible(false);
+        popularTabela(rodadaDao.mostrar());
     }
 
     @SuppressWarnings("unchecked")
@@ -78,7 +82,7 @@ public class Inicio extends javax.swing.JFrame {
         lbCorreto = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        varTabela = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jogo");
@@ -329,7 +333,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(204, 204, 255));
         jPanel5.setForeground(new java.awt.Color(153, 153, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        varTabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -348,7 +352,7 @@ public class Inicio extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(varTabela);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -409,6 +413,7 @@ public class Inicio extends javax.swing.JFrame {
             rodada.setId_usuario(usuario.getId());
             try {
                 rodadaDao.salvar(rodada);
+                popularTabela(rodadaDao.mostrar());
             } catch (SQLException ex) {
                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -515,6 +520,7 @@ public class Inicio extends javax.swing.JFrame {
                 rodada.setId_usuario(usuario.getId());
                 try {
                     rodadaDao.salvar(rodada);
+                    popularTabela(rodadaDao.mostrar());
                 } catch (SQLException ex) {
                     Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -523,6 +529,19 @@ public class Inicio extends javax.swing.JFrame {
             return false;
         }
         return true;
+    }
+
+    public void popularTabela(List<Rodada> rodadas) {
+        tabelaModelo = (DefaultTableModel) varTabela.getModel();
+        tabelaModelo.setNumRows(0);
+        String numeroCerto;
+        String tentativa;
+        for (Rodada rodada : rodadas) {
+            numeroCerto = Integer.toString(rodada.getNumero_certo());
+            tentativa = Integer.toString(rodada.getTentativa());
+
+            tabelaModelo.addRow(new Object[]{tentativa, numeroCerto});
+        }
     }
 
     public static void main(String args[]) {
@@ -572,7 +591,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbCorreto;
     private javax.swing.JLabel lbErroSelecionar;
     private javax.swing.JLabel lbIncorreto;
@@ -585,5 +603,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbFacil;
     private javax.swing.JRadioButton rbMedio;
     private javax.swing.JFormattedTextField varNumero;
+    private javax.swing.JTable varTabela;
     // End of variables declaration//GEN-END:variables
 }

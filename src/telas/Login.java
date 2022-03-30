@@ -122,7 +122,11 @@ public class Login extends javax.swing.JFrame {
                         usuarioLogado.getUsuario(),
                         usuarioLogado.getUsuario());
                 usuario.setId(usuarioLogado.getId());
-                new Inicio(usuario).setVisible(true);
+                try {
+                    new Inicio(usuario).setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 this.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(this, "usuário não encotrado");
