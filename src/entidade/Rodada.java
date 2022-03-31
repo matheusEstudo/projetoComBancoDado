@@ -6,13 +6,15 @@ public class Rodada {
     private Integer Numero_certo;
     private Integer tentativa;
     private Integer id_usuario;
+    private String resultado;
 
     public Rodada() {
     }
 
-    public Rodada(Integer Numero_certo, Integer tentativa) {
+    public Rodada(Integer Numero_certo, Integer tentativa, String resultado) {
         this.Numero_certo = Numero_certo;
         this.tentativa = tentativa;
+        this.resultado= resultado;
     }
 
     public Integer getId() {
@@ -46,5 +48,15 @@ public class Rodada {
     public void setId_usuario(Integer id_usuario) {
         this.id_usuario = id_usuario;
     }
+
+    public String getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(String resultado) {
+        this.resultado = resultado;
+    }
+    
+    
 
 }

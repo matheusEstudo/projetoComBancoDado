@@ -123,6 +123,7 @@ public class Login extends javax.swing.JFrame {
                         usuarioLogado.getUsuario());
                 usuario.setId(usuarioLogado.getId());
                 try {
+                    usuarioDao.altDataAcesso(usuario);
                     new Inicio(usuario).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);

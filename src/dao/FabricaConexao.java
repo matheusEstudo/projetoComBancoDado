@@ -9,6 +9,6 @@ public class FabricaConexao {
         Class.forName("com.mysql.cj.jdbc.Driver");
         return DriverManager
                 .getConnection("jdbc:mysql://localhost:3306/banco?useTimezone=true&serverTimezone=America/Sao_Paulo&zeroDateTimeBehavior=convertToNull",
-                        "root", "");
+                        "root", "Senac2021");
     }
 }

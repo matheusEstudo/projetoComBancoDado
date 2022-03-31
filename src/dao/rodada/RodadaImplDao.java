@@ -24,8 +24,8 @@ public class RodadaImplDao implements RodadaDao{
 
     @Override
     public void salvar(Rodada rodada) throws SQLException {
-         String sql = "INSERT INTO jogadas(numeroCerto, tentativa, id_usuario)"
-                + " VALUES(?, ?, ?)";
+         String sql = "INSERT INTO jogadas(numeroCerto, tentativa, id_usuario, resutado)"
+                + " VALUES(?, ?, ?, ?)";
         try {
             conexao = FabricaConexao.abrirConexao();
             preparaSql = conexao.prepareStatement(sql,
@@ -33,6 +33,7 @@ public class RodadaImplDao implements RodadaDao{
             preparaSql.setInt(1, rodada.getNumero_certo());
             preparaSql.setInt(2, rodada.getTentativa());
             preparaSql.setInt(3, rodada.getId_usuario());
+            preparaSql.setString(4, rodada.getResultado());
             preparaSql.executeUpdate();
             resultado = preparaSql.getGeneratedKeys();
             resultado.next();
@@ -60,6 +61,7 @@ public class RodadaImplDao implements RodadaDao{
                 rodada.setNumero_certo(resultado.getInt("numeroCerto"));
                 rodada.setTentativa(resultado.getInt("tentativa"));
                 rodada.setId_usuario(resultado.getInt("id_usuario"));
+                rodada.setResultado(resultado.getString("resutado"));
                 
                 rodadas.add(rodada);
             }

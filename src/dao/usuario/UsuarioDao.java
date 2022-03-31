@@ -17,5 +17,7 @@ public interface UsuarioDao {
     Usuario pesquisarPorLoginSenha(String login, String senha) throws SQLException;
 
     List<Usuario> pesquisarPorNome(String nome) throws SQLException;
+    
+    void altDataAcesso(Usuario usuario) throws SQLException;
 
 }

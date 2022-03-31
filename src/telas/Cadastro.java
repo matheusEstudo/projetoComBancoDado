@@ -189,6 +189,7 @@ public class Cadastro extends javax.swing.JFrame {
         varNome.setText("");
         VarUser.setText("");
         varSenha.setText("");
+        
     }
 
     private boolean verificarCadastro(String nome, String usuario, String senha) {

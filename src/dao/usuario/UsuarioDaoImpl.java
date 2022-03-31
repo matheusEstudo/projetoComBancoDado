@@ -154,4 +154,20 @@ public class UsuarioDaoImpl implements UsuarioDao {
         return usurio;
     }
 
+    @Override
+    public void altDataAcesso(Usuario usuario) throws SQLException {
+        String sql = "UPDATE usuario SET dataAcesso = now() WHERE id = ?";
+        try {
+            conexao = FabricaConexao.abrirConexao();
+            preparaSql = conexao.prepareStatement(sql);
+            preparaSql.setInt(1, usuario.getId());
+            preparaSql.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Ocorreu um erro ao tentar alterar o usuario no banco" + e.getMessage());
+        } finally {
+            conexao.close();
+            preparaSql.close();
+        }
+    }
+
 }
