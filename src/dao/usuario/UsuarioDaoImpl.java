@@ -44,7 +44,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
     @Override
     public void alterar(Usuario usuario) throws SQLException {
-        String sql = "UPDATE usuario SET nome = ?, login = ?, "
+        String sql = "UPDATE usuario SET nome = ?, usuario   = ?, "
                 + "senha = ? WHERE id = ?";
         try {
             conexao = FabricaConexao.abrirConexao();
@@ -98,6 +98,10 @@ public class UsuarioDaoImpl implements UsuarioDao {
         } catch (Exception e) {
             System.out.println("Erro ao pesquisar por id "
                     + e.getMessage());
+        } finally {
+            conexao.close();
+            preparaSql.close();
+            resultado.close();
         }
         return usurio;
     }

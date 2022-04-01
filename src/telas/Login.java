@@ -120,7 +120,7 @@ public class Login extends javax.swing.JFrame {
             if (usuarioLogado != null) {
                 usuario = new Usuario(usuarioLogado.getNome(),
                         usuarioLogado.getUsuario(),
-                        usuarioLogado.getUsuario());
+                        usuarioLogado.getSenha());
                 usuario.setId(usuarioLogado.getId());
                 try {
                     usuarioDao.altDataAcesso(usuario);
